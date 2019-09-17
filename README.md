@@ -44,3 +44,11 @@ mv posts modules
 ```
 
 如果你使用的是 vscode 编辑器的话，编辑器应该会提示你是否将 posts 目录下 import 的路径更新，选择是可以方便的更新路径的问题。
+
+### 中间件
+
+我们可以用类似下面的命令来创建一个中间件
+
+```bash
+nest g mi demo core/middlewares
+```
