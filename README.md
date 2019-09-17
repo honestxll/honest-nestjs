@@ -70,3 +70,11 @@ nest g f demo core/filters
 ```bash
 npm i class-validator class-transformer
 ```
+
+### 守卫
+
+Guard，可以翻译成守卫，守卫的作用就是决定要不要让请求通过， 就是让请求接触到路由处理器。守卫会在中间件之后，在拦截器还有管道之前被执行。创建守卫我们可以像这样：
+
+```bash
+nest g gu demoAuth core/guards
+```
