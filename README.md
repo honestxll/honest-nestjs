@@ -62,3 +62,11 @@ nest g mi demo core/middlewares
 ```bash
 nest g f demo core/filters
 ```
+
+### 管道
+
+在 nestjs 里，管道可以帮我们验证数据和转换数据的格式，在 nestjs 里面内置了一些管道，不过在使用他们之前，我们需要安装两个包
+
+```bash
+npm i class-validator class-transformer
+```
