@@ -12,3 +12,14 @@ nest new honest-nest
 cd honest-nest
 npm run start:dev
 ```
+
+### 命令
+
+先熟悉一下 nestjs 的命令
+
+```bash
+# 查看 nestjs 所有的命令
+nest --help
+# 模拟创建控制器 --dry-run 不会真的创建 g = generate | co = controller
+nest g co posts --dry-run
+```
