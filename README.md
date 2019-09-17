@@ -52,3 +52,13 @@ mv posts modules
 ```bash
 nest g mi demo core/middlewares
 ```
+
+### 异常过滤器
+
+在 Nest 应用里，处理异常用的是 Exception Filter， 这里得到的这个异常的响应是应用里的一个全局 Exception Filter 处理的。
+
+我们也可以创建自己的异常过滤器，去处理应用里面发生的异常情况。在终端，执行一下 nest generate，生成一个 filter，名字是 demo，放在 core/filters 下面。
+
+```bash
+nest g f demo core/filters
+```
