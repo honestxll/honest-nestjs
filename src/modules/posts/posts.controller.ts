@@ -13,6 +13,7 @@ import {
   UseFilters,
   UsePipes,
   ValidationPipe,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CreatePostDto } from './post.dto';
 import { DemoService } from './providers/demo/demo.service';
@@ -28,9 +29,10 @@ export class PostsController {
   }
 
   @Get(':id')
-  show(@Param() params) {
+  show(@Param('id', ParseIntPipe) id) {
+    console.log(typeof id);
     return {
-      title: `Post ${params.id}`,
+      title: `Post ${id}`,
     };
   }
 
