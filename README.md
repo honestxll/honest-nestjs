@@ -31,3 +31,16 @@ nest g co posts --dry-run
 ```bash
 new g s demo posts/providers
 ```
+
+### 模块
+
+我们可以将应用分成许许多多的模块，每个模块对应应用的一个单独的功能，这里我们可以把所有的模块都放在 modules 这个目录下面
+
+```bash
+nest g mo posts
+cd src
+mkdir modules
+mv posts modules
+```
+
+如果你使用的是 vscode 编辑器的话，编辑器应该会提示你是否将 posts 目录下 import 的路径更新，选择是可以方便的更新路径的问题。
