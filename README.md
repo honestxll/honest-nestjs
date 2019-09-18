@@ -78,3 +78,11 @@ Guard，可以翻译成守卫，守卫的作用就是决定要不要让请求通
 ```bash
 nest g gu demoAuth core/guards
 ```
+
+### 自定义装饰器
+
+在这个 store 方法的上面，现在用了 @SetMetadata 给这个方法附加了一个叫 roles 的数据，然后设置了一下数据的具体的值。在其它地方你需要重复这样做，我们可以自己定义一个装饰器，这样用起来更方便一些。
+
+```bash
+nest g d roles core/decorators
+```
