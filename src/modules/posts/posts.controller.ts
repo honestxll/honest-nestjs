@@ -26,7 +26,7 @@ import { Roles } from '../../core/decorators/roles.decorator';
 import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 
 @Controller('posts')
-@UseInterceptors(LoggingInterceptor)
+// @UseInterceptors(LoggingInterceptor)
 export class PostsController {
   constructor(private readonly demoService: DemoService) {}
 
