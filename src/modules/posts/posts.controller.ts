@@ -16,14 +16,17 @@ import {
   ParseIntPipe,
   UseGuards,
   SetMetadata,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CreatePostDto } from './post.dto';
 import { DemoService } from './providers/demo/demo.service';
 import { DemoFilter } from '../../core/filters/demo.filter';
 import { DemoAuthGuard } from '../../core/guards/demo-auth.guard';
 import { Roles } from '../../core/decorators/roles.decorator';
+import { LoggingInterceptor } from '../../core/interceptors/logging.interceptor';
 
 @Controller('posts')
+@UseInterceptors(LoggingInterceptor)
 export class PostsController {
   constructor(private readonly demoService: DemoService) {}
 
