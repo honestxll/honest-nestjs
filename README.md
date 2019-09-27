@@ -1,88 +1,75 @@
-# NestJs
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+</p>
 
-在这里我会记录一下学习 nestjs 的时候使用到的一些东西。
+[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
+[travis-url]: https://travis-ci.org/nestjs/nest
+[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
+[linux-url]: https://travis-ci.org/nestjs/nest
+  
+  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
+<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
+<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
+<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
+<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
+  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-### 创建项目
+## Description
 
-我们需要先在全局安装 nestjs，接着可以用它来创建项目。
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-```bash
-npm i -g @nestjs/cli
-nest new honest-nest
-cd honest-nest
-npm run start:dev
-```
-
-### 命令
-
-先熟悉一下 nestjs 的命令
-
-```bash
-# 查看 nestjs 所有的命令
-nest --help
-# 模拟创建控制器 --dry-run 不会真的创建 g = generate | co = controller
-nest g co posts --dry-run
-```
-
-### 服务
-
-在 Nest 应用面，我们可以把控制器上的一些比较复杂的逻辑拿出来单独放在一些叫 Service 的东西里面，Service 就是服务，服务的意思就是能帮我们做一些事情的东西， 创建的服务可以注入到控制器里使用。
-
-```bash
-new g s demo posts/providers
-```
-
-### 模块
-
-我们可以将应用分成许许多多的模块，每个模块对应应用的一个单独的功能，这里我们可以把所有的模块都放在 modules 这个目录下面
+## Installation
 
 ```bash
-nest g mo posts
-cd src
-mkdir modules
-mv posts modules
+$ npm install
 ```
 
-如果你使用的是 vscode 编辑器的话，编辑器应该会提示你是否将 posts 目录下 import 的路径更新，选择是可以方便的更新路径的问题。
-
-### 中间件
-
-我们可以用类似下面的命令来创建一个中间件
+## Running the app
 
 ```bash
-nest g mi demo core/middlewares
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
 
-### 异常过滤器
-
-在 Nest 应用里，处理异常用的是 Exception Filter， 这里得到的这个异常的响应是应用里的一个全局 Exception Filter 处理的。
-
-我们也可以创建自己的异常过滤器，去处理应用里面发生的异常情况。在终端，执行一下 nest generate，生成一个 filter，名字是 demo，放在 core/filters 下面。
+## Test
 
 ```bash
-nest g f demo core/filters
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
 ```
 
-### 管道
+## Support
 
-在 nestjs 里，管道可以帮我们验证数据和转换数据的格式，在 nestjs 里面内置了一些管道，不过在使用他们之前，我们需要安装两个包
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-```bash
-npm i class-validator class-transformer
-```
+## Stay in touch
 
-### 守卫
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-Guard，可以翻译成守卫，守卫的作用就是决定要不要让请求通过， 就是让请求接触到路由处理器。守卫会在中间件之后，在拦截器还有管道之前被执行。创建守卫我们可以像这样：
+## License
 
-```bash
-nest g gu demoAuth core/guards
-```
-
-### 自定义装饰器
-
-在这个 store 方法的上面，现在用了 @SetMetadata 给这个方法附加了一个叫 roles 的数据，然后设置了一下数据的具体的值。在其它地方你需要重复这样做，我们可以自己定义一个装饰器，这样用起来更方便一些。
-
-```bash
-nest g d roles core/decorators
-```
+  Nest is [MIT licensed](LICENSE).
