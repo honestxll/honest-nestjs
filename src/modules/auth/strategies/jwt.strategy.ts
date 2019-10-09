@@ -1,18 +1,29 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt, VerifiedCallback } from 'passport-jwt';
 import { JwtPayload } from '../auth.interface';
+import { UserService } from '../../../modules/user/user.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
+  constructor(
+    private readonly userService: UserService,
+  ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: '93fee046ebf47412c2d54c1e808218d2',
     });
   }
 
-  async validate(payload: JwtPayload, done: VerifiedCallback) {
+  async validate(payload: JwtPayload) {
     console.log('payload', payload);
+    const { name } = payload;
+    const entity = await this.userService.findByName(name);
+
+    if (!entity) {
+      throw new UnauthorizedException('没找到用户');
+    }
+
+    return entity;
   }
 }
