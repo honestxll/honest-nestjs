@@ -20,7 +20,7 @@ export class PostController {
 
   @Get(':id')
   async show(@Param('id') id: string) {
-    return this.postService.show(id);
+    return await this.postService.show(id);
   }
 
   @Put(':id')
