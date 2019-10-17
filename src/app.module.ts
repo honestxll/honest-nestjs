@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { PostModule } from './modules/post/post.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { CategoryService } from './modules/category/category.service';
+import { CategoryModule } from './modules/category/category.module';
 
 @Module({
   imports: [
@@ -21,8 +23,9 @@ import { AuthModule } from './modules/auth/auth.module';
     PostModule,
     UserModule,
     AuthModule,
+    CategoryModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, CategoryService],
 })
-export class AppModule {}
+export class AppModule { }
