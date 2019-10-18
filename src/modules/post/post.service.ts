@@ -67,6 +67,10 @@ export class PostService {
     queryBuilder.leftJoinAndSelect('post.category', 'category');
     queryBuilder.leftJoinAndSelect('post.tags', 'tag');
 
+    queryBuilder
+      .take(3)
+      .skip(3 * (2 - 1));
+
     if (categories) {
       queryBuilder.where('category.alias IN (:...categories)', { categories });
     }
