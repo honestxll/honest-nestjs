@@ -71,6 +71,11 @@ export class PostService {
       .take(limit)
       .skip(limit * (page - 1));
 
+    queryBuilder
+      .orderBy({
+        'post.created': 'DESC',
+      });
+
     if (categories) {
       queryBuilder.where('category.alias IN (:...categories)', { categories });
     }
