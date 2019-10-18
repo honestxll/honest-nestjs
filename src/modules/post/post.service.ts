@@ -43,6 +43,7 @@ export class PostService {
     });
     return Promise.all(_tags);
   }
+
   async store(data: PostDto, user: User) {
     const { tags } = data;
 
@@ -79,8 +80,16 @@ export class PostService {
   }
 
   async update(id: string, data: Partial<PostDto>) {
-    const result = await this.postRepository.update(id, data);
-    return result;
+    const { tags } = data;
+    delete data.tags;
+    await this.postRepository.update(id, data);
+    const entity = await this.postRepository
+      .findOne(id, { relations: ['category', 'tags'] });
+
+    if (tags) {
+      entity.tags = await this.beforeTag(tags);
+    }
+    return await this.postRepository.save(entity);
   }
 
   async destroy(id: string) {
