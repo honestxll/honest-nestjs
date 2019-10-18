@@ -1,7 +1,7 @@
 import { createParamDecorator } from '@nestjs/common';
 
 export const ListOptions = createParamDecorator((data, req) => {
-  let { categories, tags } = req.query;
+  let { categories, tags, page, limit } = req.query;
 
   if (categories) {
     categories = categories.split('-');
@@ -11,5 +11,17 @@ export const ListOptions = createParamDecorator((data, req) => {
     tags = tags.split('-');
   }
 
-  return { categories, tags };
+  if (page) {
+    page = +page;
+  } else {
+    page = 1;
+  }
+
+  if (limit) {
+    limit = +limit;
+  } else {
+    limit = 1;
+  }
+
+  return { categories, tags, page, limit };
 });
