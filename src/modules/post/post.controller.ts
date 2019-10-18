@@ -9,7 +9,7 @@ import { User as UserEntity } from '../user/user.entity';
 export class PostController {
   constructor(
     private readonly postService: PostService,
-  ) {}
+  ) { }
 
   @Post()
   @UseGuards(AuthGuard())
@@ -19,8 +19,10 @@ export class PostController {
 
   @Get()
   @UseInterceptors(ClassSerializerInterceptor)
-  async index() {
-    return await this.postService.index();
+  async index(
+    @Query('categories') categories: string
+  ) {
+    return await this.postService.index(categories);
   }
 
   @Get(':id')
