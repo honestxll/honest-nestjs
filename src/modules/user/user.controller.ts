@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, UseInterceptors, ClassSerializerInterceptor, Put } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UseInterceptors, ClassSerializerInterceptor, Put, ParseIntPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto, UpdatePasswordDto } from './user.dto';
 
@@ -6,7 +6,7 @@ import { UserDto, UpdatePasswordDto } from './user.dto';
 export class UserController {
   constructor(
     private readonly userService: UserService,
-  ) {}
+  ) { }
 
   @Post()
   async store(@Body() data: UserDto) {
@@ -23,5 +23,13 @@ export class UserController {
   @UseInterceptors(ClassSerializerInterceptor)
   async updatePassword(@Param('id') id: string, @Body() data: UpdatePasswordDto) {
     return await this.userService.updatePassword(id, data);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: UserDto,
+  ) {
+    return await this.userService.update(id, data);
   }
 }
