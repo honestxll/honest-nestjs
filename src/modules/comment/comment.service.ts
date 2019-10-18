@@ -9,14 +9,22 @@ import { CommentDto } from './comment.dto';
 export class CommentService {
   constructor(
     @InjectRepository(Comment)
-    private comentRepository: Repository<Comment>,
+    private commentRepository: Repository<Comment>,
   ) { }
 
   async storePostComment(id: number, user: User, data: CommentDto) {
-    return await this.comentRepository.save({
+    return await this.commentRepository.save({
       user,
       ...data,
       post: { id },
     });
+  }
+
+  async update(id: number, data: CommentDto) {
+    return await this.commentRepository.update(id, data);
+  }
+
+  async delete(id: number) {
+    return await this.commentRepository.delete(id);
   }
 }
