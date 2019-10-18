@@ -9,7 +9,7 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async store(data: UserDto) {
     const { name } = data;
@@ -50,7 +50,18 @@ export class UserService {
     return await this.userRepository.save(entity);
   }
 
-  async findByName(name: string) {
-    return await this.userRepository.findOne({ name });
+  async findByName(name: string, password?: boolean) {
+    const queryBuilder = await this.userRepository
+      .createQueryBuilder('user');
+
+    queryBuilder.where('user.name = :name', { name });
+
+    if (password) {
+      queryBuilder.addSelect('user.password');
+    }
+
+    const entity = await queryBuilder.getOne();
+
+    return entity;
   }
 }
